@@ -132,6 +132,3 @@ SELECT COUNT(*) FROM ifood_case.silver_taxi_clean;
 SELECT taxi_type, COUNT(*) FROM ifood_case.silver_taxi_clean GROUP BY taxi_type;
 -- Deve mostrar yellow e green
 ```
-
----
-**Projeto validado e pronto para execução!** ✅
