@@ -1,0 +1,21 @@
+# Configuração de conexão com Databricks
+ifood_case:
+  target: dev
+  outputs:
+    dev:
+      type: databricks
+      catalog: main  # ou seu catálogo
+      schema: ifood_case_dev
+      host: "{{ env_var('DBT_DATABRICKS_HOST') }}"
+      http_path: "{{ env_var('DBT_DATABRICKS_HTTP_PATH') }}"
+      token: "{{ env_var('DBT_DATABRICKS_TOKEN') }}"
+      threads: 4
+      
+    prod:
+      type: databricks
+      catalog: main
+      schema: ifood_case_prod
+      host: "{{ env_var('DBT_DATABRICKS_HOST') }}"
+      http_path: "{{ env_var('DBT_DATABRICKS_HTTP_PATH') }}"
+      token: "{{ env_var('DBT_DATABRICKS_TOKEN') }}"
+      threads: 8

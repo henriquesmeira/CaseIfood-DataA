@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: delta_lakehouse
+    description: "Delta Lake Lakehouse - Demonstração de integração dbt"
+    schema: "ifood_case"
+    tables:
+      - name: silver_taxi_clean
+        description: "Camada Silver - Dados limpos Yellow + Green taxi"
+        columns:
+          - name: taxi_type
+            description: "Tipo de taxi (yellow/green)"
+          - name: total_amount
+            description: "Valor total da corrida"
+          - name: passenger_count
+            description: "Número de passageiros"
+          - name: quality_flag
+            description: "Flag de qualidade dos dados"

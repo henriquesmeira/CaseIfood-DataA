@@ -1,0 +1,10 @@
+# Case iFood - Delta Lake Dependencies
+
+# dbt para integração opcional com Delta Lake
+dbt-databricks>=1.7.0
+
+# Análise local (opcional)
+pandas>=1.5.0
+requests>=2.28.0
+
+# Nota: PySpark e Delta Lake já estão disponíveis no Databricks

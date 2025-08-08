@@ -1,0 +1,62 @@
+# Projeto dbt para Delta Lake - Case iFood
+name: 'ifood_case_delta'
+version: '1.0.0'
+config-version: 2
+
+# Estrutura do projeto
+model-paths: ["models"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+
+# Diretórios de saída
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+# Configurações Delta Lake
+models:
+  ifood_case_delta:
+    staging:
+      +materialized: view
+      +file_format: delta
+    marts:
+      +materialized: table
+      +file_format: delta
+      +post-hook: "OPTIMIZE {{ this }}"
+
+# Configurações de testes
+tests:
+  +store_failures: true
+  +schema: test_failures
+
+# Configurações de seeds
+seeds:
+  ifood_case:
+    +schema: seeds
+
+# Configurações de snapshots
+snapshots:
+  ifood_case:
+    +target_schema: snapshots
+
+# Variáveis do projeto para Delta Lake
+vars:
+  # Configurações do Delta Lake
+  database_name: "ifood_case"
+  bronze_table: "bronze_yellow_taxi_unified"
+  silver_table: "silver_yellow_taxi_clean"
+
+  # Configurações de data
+  start_date: "2023-01-01"
+  end_date: "2023-05-31"
+
+  # Configurações de qualidade
+  min_fare_amount: 0
+  max_fare_amount: 1000
+  min_passenger_count: 1
+  max_passenger_count: 6
+
+  # Configurações Delta Lake
+  enable_time_travel: true
+  optimize_on_write: true
+  auto_compact: true
